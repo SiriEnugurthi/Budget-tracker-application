@@ -1,0 +1,32 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Flask environment
+instance/
+.env
+*.env
+
+# SQLite database files
+*.sqlite3
+*.db
+
+# Pytest and coverage
+.cache
+.coverage
+htmlcov/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Node modules (if you use npm for frontend)
+node_modules/
+
+# Python virtual environment
+venv/
+ENV/
+env/
