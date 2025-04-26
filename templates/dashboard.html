@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <style>
+        canvas { max-width: 400px; height: auto; }
+        .income { color: green; }
+        .expense { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Budget Tracker Dashboard</h1>
+
+    <form method="POST">
+        <label>Monthly Budget:</label>
+        <input type="number" name="budget" step="0.01" required><br>
+        <label>Savings Goal:</label>
+        <input type="number" name="goal" step="0.01" required><br>
+        <button type="submit">Save Budget</button>
+    </form>
+
+    <h2>Summary</h2>
+    <ul>
+        <li>Total Income: ₹{{ income }}</li>
+        <li>Total Expenses: ₹{{ expense }}</li>
+        <li>Remaining Budget: ₹{{ remaining }}</li>
+        <li>Savings Goal Met: {{ 'Yes 🎉' if goal_met else 'No 😞' }}</li>
+    </ul>
+
+    <h2>Add Transaction</h2>
+    <form method="POST" action="{{ url_for('add_transaction') }}">
+        <input type="text" name="t_name" placeholder="Transaction Name" required><br>
+        <input type="number" name="t_amount" placeholder="Amount" step="0.01" required><br>
+        <input type="text" name="description" placeholder="Description" required><br>
+        <input type="date" name="date" required><br>
+        <select name="type">
+            <option value="Income">Income</option>
+            <option value="Expense">Expense</option>
+        </select><br>
+        <label><input type="checkbox" name="recurring"> Recurring</label><br>
+        <button type="submit">Add Transaction</button>
+    </form>
+
+    <h2>Transactions</h2>
+    <table border="1">
+        <tr>
+            <th>Name</th><th>Amount</th><th>Type</th><th>Description</th><th>Date</th><th>Recurring</th>
+        </tr>
+        {% for t in transactions %}
+        <tr class="{{ 'income' if t['type'] == 'Income' else 'expense' }}">
+            <td>{{ t['t_name'] }}</td>
+            <td>{{ t['t_amount'] }}</td>
+            <td>{{ t['type'] }}</td>
+            <td>{{ t['description'] }}</td>
+            <td>{{ t['date'] }}</td>
+            <td>{{ 'Yes' if t['is_recurring'] else 'No' }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Spending Overview</h2>
+    <canvas id="budgetChart"></canvas>
+    <script>
+        const ctx = document.getElementById('budgetChart').getContext('2d');
+        const budgetChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Income', 'Expenses'],
+                datasets: [{
+                    data: [{{ income }}, {{ expense }}],
+                    backgroundColor: ['#28a745', '#dc3545'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+    </script>
+
+    <p><a href="{{ url_for('logout') }}">Logout</a></p>
+</body>
+</html>

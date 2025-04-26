@@ -1,0 +1,127 @@
+/* General Reset */
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Container for forms and content */
+form, .content {
+    background: white;
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 25px 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading styles */
+h1, h2 {
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+/* Input and button styles */
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+button,
+input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+}
+
+button:hover,
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Flash messages */
+ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    color: #dc3545;
+}
+
+/* Links */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Dashboard Table */
+table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+}
+
+table th,
+table td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.income {
+    color: #28a745;
+}
+
+.expense {
+    color: #dc3545;
+}
+
+/* Responsive Canvas */
+canvas {
+    display: block;
+    margin: 30px auto;
+    max-width: 400px;
+}
+.below-button {
+    margin-top: 12px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.center-note {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+}
+canvas {
+    display: block;
+    margin: 0 auto;
+    max-width: 600px;
+    height: auto;
+}
+#budgetChart {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}
